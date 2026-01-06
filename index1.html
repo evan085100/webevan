@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio | Mochammad Evan Pratama</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+  --bg-main:#020617;
+  --bg-section:#020617;
+  --text-main:#f8fafc;
+  --accent:#38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.3);
+  --card-bg: rgba(30, 41, 59, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body.light{
+  --bg-main:#f1f5f9;
+  --bg-section:#ffffff;
+  --text-main:#0f172a;
+  --accent:#2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+*{
+  margin:0;padding:0;box-sizing:border-box;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  scroll-behavior:smooth;
+}
+/* Container Utama */
+.edu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Kartu Riwayat Sekolah */
+.edu-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: var(--card-bg); /* Pastikan variabel ini ada di :root */
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Gambar Sekolah */
+.edu-img {
+    width: 100px;
+    height: 100px;
+    min-width: 100px; /* Mencegah gambar gepeng */
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+}
+
+/* Informasi Sekolah */
+.edu-info h3 {
+    color: var(--accent);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.edu-info p {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Label Tahun */
+.year {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent);
+    color: #ffffff;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* Responsif Mobile */
+@media (max-width: 600px) {
+    .edu-card {
+        flex-direction: column; /* Gambar jadi di atas teks pada HP */
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .edu-img {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+    }
+}
+
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+  transition: background 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;top:0;width:100%;
+  padding:15px 10%;
+  display:flex;justify-content:space-between;align-items:center;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index:1001;
+}
+body.light nav{background:rgba(255,255,255,0.8)}
+nav h2{font-weight: 800; color: var(--text-main); letter-spacing: -1px;}
+nav h2 span{color: var(--accent)}
+
+nav ul{list-style:none;display:flex;gap:30px}
+nav ul li a{text-decoration:none;color:var(--text-main);font-size: 0.9rem;font-weight: 500; transition: 0.3s;}
+nav ul li a:hover{color: var(--accent)}
+
+/* MENU MOBILE OVERLAY */
+.menu-btn{ display:none; font-size:1.5rem; cursor:pointer; color:var(--accent); z-index: 1002;}
+
+@media(max-width:768px){
+    nav{ padding: 15px 5%; }
+    .menu-btn{ display:block; }
+    nav ul{
+        position: fixed; top: 0; right: -100%; height: 100vh; width: 80%;
+        background: var(--bg-section); flex-direction: column;
+        justify-content: center; align-items: center; gap: 40px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+    nav ul.active{ right: 0; }
+    nav ul li a{ font-size: 1.2rem; }
+}
+
+/* HERO SECTION */
+header{
+  position:relative; min-height:100vh; overflow:hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+header::before{
+  content:""; position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1518770660439-4636190af475') center/cover fixed;
+  z-index:-3;
+}
+header::after{
+  content:""; position:absolute;inset:0;
+  background: linear-gradient(120deg, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.7));
+  z-index:-2;
+}
+
+.hero{ text-align:center; padding:20px; width: 100%; z-index: 1; }
+.hero h1{ font-size: clamp(2.2rem, 10vw, 4rem); line-height: 1.1; margin-bottom: 15px;}
+.hero p{ font-size: clamp(0.9rem, 4vw, 1.1rem); opacity: 0.8; margin-bottom: 35px; max-width: 600px; margin-inline: auto;}
+
+/* SECTION STYLING */
+section{ padding: 80px 10%; }
+@media(max-width:768px){ section{ padding: 60px 5%; } }
+
+.section-title{ font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 40px; position: relative;}
+.section-title::after{
+    content: ''; position: absolute; bottom: -8px; left: 0;
+    width: 40px; height: 4px; background: var(--accent);
+}
+
+/* EDUCATION TIMELINE */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: var(--accent);
+    top: 0; bottom: 0; left: 20px;
+}
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background: inherit;
+    width: 100%;
+}
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    left: 12px;
+    background-color: var(--bg-section);
+    border: 3px solid var(--accent);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+.timeline-content {
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+}
+.timeline-content h3 { font-size: 1.1rem; color: var(--accent); }
+.timeline-content span { font-size: 0.8rem; opacity: 0.6; font-weight: 600; }
+
+/* ABOUT & GRID */
+.about-box{ display:grid; grid-template-columns: 1fr 2fr; gap:40px; align-items: center; }
+.profile-pic{ 
+    width:100%; max-width: 280px; border-radius:30px; 
+    border: 3px solid var(--accent);
+}
+
+@media(max-width:768px){
+    .about-box{ grid-template-columns: 1fr; text-align: center; }
+    .profile-pic{ margin-inline: auto; }
+}
+
+.grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; }
+.card{
+  background: var(--card-bg); padding:25px; border-radius:24px;
+  border: 1px solid var(--glass-border); transition: 0.3s;
+}
+
+/* BUTTONS */
+.btn{
+  background:var(--accent); color:#fff; padding:12px 28px; border-radius:12px;
+  text-decoration:none; font-weight:600; transition: 0.3s; display: inline-block;
+}
+
+/* REVEAL */
+.reveal{ opacity:0; transform:translateY(20px); transition: 0.6s ease-out; }
+.reveal.active{ opacity:1; transform:translateY(0); }
+
+footer{ padding: 40px; text-align: center; border-top: 1px solid var(--glass-border); opacity: 0.7; font-size: 0.8rem;}
+
+/* TYPING CURSOR */
+#typing::after { content: '|'; animation: blink 0.7s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+
+<body>
+<nav>
+  <h2>Ev<span>an.</span></h2>
+  <ul>
+    <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+    <li><a href="#about" onclick="toggleMenu()">Tentang</a></li>
+    <li><a href="#education" onclick="toggleMenu()">Pendidikan</a></li>
+    <li><a href="#projects" onclick="toggleMenu()">Projek</a></li>
+  </ul>
+  <div style="display:flex;gap:15px;align-items:center">
+    <div class="toggle" onclick="toggleMode()" style="cursor:pointer; font-size: 1.2rem;">🌗</div>
+    <div class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+</nav>
+
+<header id="home">
+  <div class="hero">
+    <h1>Mochammad <span>Evan Pratama</span></h1>
+    <p>Saya adalah seorang <span id="typing" style="font-weight: 700; color: var(--accent);"></span></p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="#projects" class="btn">Lihat Projek</a>
+        <a href="#contact" class="btn" style="background:transparent; border: 1px solid var(--accent); color: var(--accent);">Hubungi Saya</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="reveal">
+    <h2 class="section-title">Tentang Saya</h2>
+    <div class="about-box">
+        <img src="profile.jpg" alt="Foto Evan" class="profile-pic">
+        <div class="about-content">
+            <p style="line-height: 1.8; font-size: 1.05rem; opacity: 0.9;">
+                Halo! Saya Evan, seorang pelajar <b>Rekayasa Perangkat Lunak (RPL)</b> yang berdomisili di Malang. Saya memiliki ketertarikan tinggi dalam dunia pengembangan web dan desain antarmuka modern.
+            </p>
+            <div style="margin-top: 25px; display: flex; gap: 20px;">
+                <a href="mailto:xvanpratama@example.com" style="color: var(--text-main); font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/h0wpann" style="color: var(--accent); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6282151061969" style="color: var(--accent); font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="education" class="reveal">
+    <h2 class="section-title">Riwayat Pendidikan</h2>
+    <div class="edu-container">
+        
+        <div class="edu-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsOGKdSP6_dPXQuXvffV1fzzVDj2TUIWVQTQ&s" alt="MI Nurul Huda" class="edu-img">
+            <div class="edu-info">
+                <span class="year">2015 - 2021</span>
+                <h3>MI Nurul Huda</h3>
+                <p>Pendidikan dasar yang menjadi awal mula ketertarikan saya pada dunia komputer.</p>
+            </div>
+        </div>
+        <div class="edu-card">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAABp1BMVEUAnzz///8AAAAAnz0Aoj349AAApT7fACT//wAApT8EAAAAoTz/+wD29vYAqED//QD5+fnv7+/h4eHBwcHb29sAKwDp6ekKOhsGEg3Hx8cJfjS7u7uvr68ANQAFPhqampo2NjaCgoIvLy/T09MAJQBERERtbW1NTU0AgjAAIAAGjjkANwDnACWmpAYJUCMlJSVfX1+Pj4+jo6N3d3cAEwAAGAAALwAAYirf2QAFljtmZmYAHABNRUsAYCAAPwAGjDgIdjHn5QYATAAHKRQGGw8qHCcGTSGOiw8pKAu9ugwAZiBrYmkZGRkAeihFPkQAWxIUABEATBIAVBoAbzI7MDhYUlcIWicAAA57eQtWVQrOywAAUABeWwCUkwAAbRsdAhk+URhGYR0pQBh6agBLVhYnFCN1cAojUSFRTQgAJhYcCgBdahm2DSIzAgpMCxFYBQ5YJhuJDRqmDB4nCwzLCyNKJhlFMh5rABU3PSCMABlyggdpQRLK1gaWoQdpABsvMggAABtUABvGvAAvLQhEQg0dHAg4ZyZNbyAbKB9ubn0fMyUqKjQXIBxz20/6AAAgAElEQVR4nO19iVsjR5anFBnKUiqlRBe6S0IIhEoUhyQKkRQgcRuJoygBpijA3TNtuhh7e9oe7/TMdu/WbNvVa4/9R29E5J0ZeUiAZ3a/eZ9dpPKMX7wXL957EfHC5///nXz/0QV4cvovhI9KsUQjG/k1P4jp10OYLK2BpdPMm37h1wX56yCMZstfgNMjRmAFsTcO+oXor/JZQr8CwkiiD16t11kO8j6fj4cs05sC1ezTf1iiJ0eY7YeWeiLH+TTiISf2wG459dTfJvS0CPN9MH4kCoR5Ph+jBynU18FxKfaknyf0hAiT5dDrHiPJpg6cSpCrbYBq5ekKINGTISysgbd1TuYeHSPDs+I6OCs8VREkehqE8TKYynEsbwtOJ621cdB4yhb5FAgr5+BU5KDGKyv39MLK1k9BP/kE5ZDo8RE2vwRdBrOPcYBoJI7pPp2wPjLCWAMsdwSl8bkh0zFSyL34ovkkdsCjIoyVwUad46kY3NAizTr1pvmYpZHpERFifKJAx6cSbxBf9RD/5bnO+BePj/HREKYaSL2wct+nZxij/8PXag4Klhc6s6D0yIb5IyGMlBV8jsRwv/ktJOBUgEakqIfcCJUetT0+DsKmJ3wIQP1mX3S+jxfqy+Ax9epjIMx/MV73gg+pk/bK1QDSr6nM5NnOi93EI5RLoocjjJ+DGtKflKZn/c39JhwucjZ36fjI5cDaY9kAD0WYqoKeTf9AaWv1m7Exo5jawIRcF/Tj/xkQNsFbaCN1xhITEi5WAoGVNiv9cntiHbQeQ+U8CGHy7FWd9YDP1xm0Cf1dMBAI/J10PKjTeakeIbX6Rf4/FmEZdC0dPFXq4ODvN1cwbSKAAfnw77uuzBdq4PjBzXF0hJXdDcaLgGLMXO13m2MBHQU3f9eBBlvAcKycglwPNB4oqqMijPSJBnU3rqXunWfm54I6gHMXjEU9UV/FMRtvHtY7jogwYath7CCzg2sFX3jzXZdT7nSrImTJgfOHhHNGQhhtgZonDaMnKKY3JYQrRdFFvA39DI+06gMM8lEQxr+cdW+BVt6wv1eYOO+tejStWgdrI7NxBIRNigr14u2Kl0jZhMOoFV462aYU3wqJ6vrIturQCFPHU1jGPLrvuttg+yoQGJubQzCvBrzdXXbv4MTXx6PZOMMizIJ1nZFGq2+LypeJKwbDgevu4C4QDvxeHwK3eYuZUMcxEhuHRNgAHS9tyKgmechyLBT3g1dpEUKxeBXcZ1jWmzeihyiC8xG846EQRtdem7Wgi7Siy5yv00VGWm6wMneBA8Q8N7//4X47PV/jnJ9V+lKVeOb0zfAh8mEQVr5Yh5SKdwF5EQKE/uGrHGE/rAOZBq7t2XxVyIHGEyJseu8EtZLBroIH7AnSqR3lxLYwBDj5dczy2ZAKxzvCMqhTxIpxYQMcqAhDHZ4xQL6gi6kzW9l1MJz/7xnh+ZTVkvRCTFFFtI3bMMwoP4uu7ZAOsTOcpHpEGNs9tfPk7bGR/3lB42IO6llY5413YuJ5954WMkvD6FRvCLNveg4V7lwmXtUsYAfyGgtDlMdgRzQ3dYprjAzVN97dRk8I8yYdw1i+bi6W/ooYUiG2BY2FGevTXBqEiiLnNOYoEVvz3vt7QdgEdYqhbfk8T+tK8I0qKBAStzWGWm7kRXJPm+F8xr6Q0apUPkK2ePnxEDaAvpt3qNccddSCZzQe6mnH+jZOwp8ZUEb+Tb8h8+r8sRC2AGM3Eq+DwXLzAIsY1OrZC0L8Yk2keUZupZkB42DUSfdzp2eePCpXhKvLpqkGNAXB1fakfjyUs8ozQwUIMpR6YjQ9tKfqHNuoQQ94seHcEK4tc44KHF8SclrrCllcP94GIaBomoHucuiCcwkdszngIdrojDC6NkvrBo2CyM3rxdASI+SJLr2fV27YTssILBaEWZ7TjHWw0aDGuboHleqMcG3D0g1anDnuwlCsDm+6W0K401Fu+Pq/adw2MoZV3yTLRNrNrIMiKD0I4dopZwJl/RQrS1Zm72IvnckMOP1FzGypD9gR5FL/4eU/UusCmwYKCzPIhzALBCN3GsboKoLYGh1h5OzU2ZcggTC5P08LrCBwYi1XE01yzXckhDWZhS//IOMwKyUuDdQrnOyAQJ+5TZiI55b7IyM8PtUJid1HFBktMmK3uITRIi1oKDok0EKCKMnmy5eylIILxXmS3g1zavtj1RbZcbVveO65c8doj/D81Mn2V+PuqrenUaiu6695SHRMKPfHb/Hfb15+o96GvCed3AnKm1ADFZQWaT+2oSHmZtdGQtifpXmD5pqkd+e6ro4XlYJ/8/Kf0L/Pvtbdpx990pyOTIfpKm91H73BXDw9dhjbsENYHYfWftAqKZIasVCbU6NQNeXcH15+jWF+q+M1o/Fa19kDrdIQOw3ftBFV7tSBizYIq1M2ZrT5W3STbJtTb2JkHfpP3z17+e03L5+9/OYfZFYV62p3Bzlhj/YeRyeZ0cohvD2z5SIdYQmYAVJrD0fSirSSZXS9OawN2oPi1y+fPXv2Uv7nO0xtzUyH3R21ORtqrO7V60ZGqp1TTEWYB54iFrhV8h0rPs12I4qeRxz6I8ZmoJd/0r6hF4SczoBo03oruqSitjgEworkDzp5E9o1dkCRU5Pvx9e+tiB89p027USnkNOC0ElLb8zkTAAd3Rtuw6ZfpCCsgA50f6P26tySwrkdxQLf05UNcZq7sOBDTPzv6k18R62lGkS6Uey2LwY1yviW2ajRX+Ker3pEGHmT8x4Ew5+DMNfeSxcvunVVX0jmijY69s9WFj57+a+aG6JFiUn3gOSac9F0pjLgh7gXVW8Iz3rDDn7y4kVbRDYbVCyztMEYYnzsnygIn31X00DwUA6Nf24PwQ0lD5fKXhC2nttx0D5+gYQzlM51usWQrGdMN8BvaAifGQxTTiRP0yJwLshUQp4oxZkyIyyB4WfAciZFWofmp+gIu1D/Ul4QB8VibbiRHyMh+8O6FMeE0GM/YWzzuigvom1VQ6il41x5KJuwrkNuLoBhxxrYMCKMDadGVQTzGgPbFBUh/KNdO3RQjlZw7jcyyEExr2wwIlS0jLeuUPshyBBDF9T4EfsvLrrU6NY6f9K5YOy6uec3IGwtO413ORHb3Qllil2GoxYHtiksfPkvzh/zwjPpPv0fn2Du+fUIC14bIQUG9IkMiwWUMXtYxLT7Gpuk5D9imiLj9OXX1sAjYzkYviRIoZbsEMaB8wRly2dNkV+HonF//Nd33z37Fknm//jw3cvvvn357btv0+xwjV37rGPcCMdn8zYIz7pDz3Oyvp5+FrZvgn/881/+/N3/DI79+dn1X/50Hbw2TqR1qT6Xa4YTSKHGqQjLzwUS0LIJb1vPMuZb7InPHQQ/XAUP3gQC4bn/9Zfg3H5wXxwKg90NNLBs94yGMOu9EQ5FUk9Xvwl+thle+RgMBFY+D4Sv3gWvvQxnuZy3u0PYaFkRRkJma8LwvFV7ePuyQrB9/W+b4asPCOEmRvj5ddf7xCprcVy+bTDfFITnb72bo15CJ2YS/nYwF9z/hHn4vw+Cd1fr3p3bIUiNDokgaUKYAHJ02y5aYW6ILn20hbivgvuXP3zYDIzdfLi8mwv+zdFDs21ltJtoZ7juGxPCNx1N2T+4JmnE3Y2FAzcrd+HND3PBQDj4WxuEQ35c7X3Nz7EbDQPC1sbDhMb9Tng5FgheBq7uLjdv8ATMr2x5OFoFWzp+qNjgPlmPDv0Kz6fkC/sI4V04MDYmIbw0irkns9r2A7STsAZiGsLdnOapGe92+mX+iv1VdEWcCweC12G8GAEjHNv36Lh7OUcn7u25irA0brGBRxAVmkmgnasThEENocibnvL8Ca+PcFKXgRF+aR7Je3xCRg2S0DuCcB8hDN+4BntHYLJR8mFtTUG4+wgIXbQw3/1rOBDWIZyzjBUP+zGXa4yPd0bouQ14KxscXCFYlxrCg5xZSp0sTcdTdrLLH43Ow6EcAUKwvYLA7Y+pCP/afdSWQdWmR+c6hI8nJRKZi8/NbxoQBq4G3kO+nuSEsZhaMKcifPOwdsjgIJkAIeQEYrzzUGBEhmMhS+aTkkvCXhDhugmrCDfbon4aIo/uYjh1NAoKHCO/zQ2d/XV4q/FQF3x2amxmW5SRHVcodve2lzKZ18WBD4d229uZENi+6F4gPsEcubTz+d1VeFNDGD74PITniMmvlO5aSsuRPrabxr8GXnDYX4O9loLwTIdwBBdNmyUCQBsK+rGoC0GLM4KrzTkV4ZUcO+ZlgPIzGeKCc0r8VRld8xqUMpYYrqsIz2u2UuqlU9JN5QZFwTh/qKaNXYMDDWF4X0OEiG2rNcTq5wbsuU1to15UfsO3JQXh2hEN4RB2tzoRZlusmSZuaRD3AysqwrFLhckEA69OO8VD+yreHfP4xzBFQ6JwqiI8v5UHRL2CMt8nKEPdUEgrhauRoxBU5gHdBHUIg9cKIsl444V7FbLGwo6HiRgM9ZAQt6Faba0ebYbsEJ6DIqfbnFq6LiO00fEOp6BH6K4OVCn9XBVryYtilfYaqqtNVzcMpdX+EE4Qu5ynIhw67OPThmbSGkIQKua69zsdnt3TIQxICMMHqhiHpJ5Km/5XVF8R4h7mjLNLWQVheZ0+nuwZojJhK80aB9oGqEvTI7ySEY69A+qki7RgRAjUuaqZ0dZjaAilsClG2LCNQrmQqrUUhBynakWJIVCVP4TwQEYYXMEncvqpa6YpnA4IHb1QA3GSC0z8Q6c5iC5BIcaIUJ0gJFObVSaNziHZVBDeod//zMjMLeKPs/PAQhn6MI9nYkBUQViYHd4DNoTGNYSwXkvrSxkSFd2PEM5djSHbbXN/E//+Pq3MFcZM5PaAbrJQyMRDemlczvJiSPXxE1NmhE6uJYVUTcOi7rDd1neJNUGHcGXuwwGy3W6MvMJr2ojGnZen1aQl9Rvi3D7uWCy+c6YirIBRhw1NCLcJHJEZaKJqQIhttc3NfZ2dI/GZ95EZxG351pqMkDb6ZvUn7YDyR1qcJgm8tWmze6IhlPvDe7KKa0cUBFGR1brSDm+CY3PYkjkIWOZQIcOGTC69kDqKbcVssEwEN3/fMW4De1UVYQo4VoYLMbpB7o40H/ii25W5eK9OIvrh4IoYMldEkX6cm0sPlNWlIZET8OG8dG9XeC2d92LTUEojE/u2oSKMfe5t2MmuAnQTFQyzMlDZa8pMIJXekX8/zQX3NL8jVJQOu3jSeEY7L3vmDIVXLsxgcNS7oCKM7or2Tr7bBRwL1cq/Z4AY6gqUfk6izWLOci6El2O2tdmOaW/6gV5E7kVWiwifDeHkU14HVcUSqum6/NB2jYMmpoI5+e/HYFG3ak9WohkohnYY7bz7UmiHEkJ5+IkgXDsaQeI14pnufDqd3rvoitDHMbl2cXtnu9ju4NlVMEcSCr2bu7m5+eHd9wfBv15+fPfubi4Q/A1Xb+8V0XPFixzy8dHzA5HnGYbnxcEeOT1KO9QVSh/Vr/bs3kUdX9c1C+k6AzlBEFhWCi7hqA36BSXJ53EAR7wJhsPBS9zhhwP7wSD6G/yKwXOg8J0cxNEcgTzOay/wsNKSXmYJoQh0IzMjG6Zew6q1OTIaE5CsNpJtaEw3NmN8wiks6xB4ZoxX+dqZDmFBXd5ktUIZyk/zDzerisT0ydCTDqGa1WwI19vwer18WQ/hbV8/uvbCdZ7Jgzw1vottbhmhFDUNhG9c0gt6LIVdwZTuUEIYB6z1XpVBjpYDDnUigniOrvRXOoNLj5oZkQ1eGKwgVMHrMURB1A7HyMhFHd3NcRzLscqD0jPS/ET8OocF8kamUQonPC/oEEZoI6ReO9hOulhM5yAvFtFfrN/5WrqYrvNIjRaL8xBnwSrev5sbQwgD764RfbxGqhRxFKlbYa8oUVpeHMN1i+k9nBKErV+ki3vmRCreQlASQmWugjTK/cUIEiMTTzruIit5UHucvARjj/WRrhEqdjkOP62oHeBnm8FPuEdXT0iJlaTVG6EBC6V1QaHBMCrQgJ9TpmFKCNdco962b5IQ7nCS6TbPyevvkcOAEWYQQmnl4UF47E5DCC6Dn2GEGQNCXjZzQqLS64fqQyA0FItZiOoROnSIrq+SSlWXCosQylZNm4O5e+zFyjkVrsfCBOHlzTvsH36mIkwPELWJVYW9xFc4utHGPkoX83HgKdBp7UT4jrIUSkKoxjEYBx/JEeFAqnWMUOLLawhzO0RYZdN0M3CJEV4F94PI+v6kIpwXMJElUFwIDwQglu8hL3pHwMss28ZVpC4gtUN42zIgTIyzllrwiFNGWJQM0HmOLBPCcllDnuE9dvFQsREasB/exwivL3/AYZofVIRLyELbvsBTMcl61AFm5DYniiLJMOEwCdURJfe2aUCYfDVytE1GuJOWEZLoIS7qHsvgMUKiZy4R1zKbN7p2eGBsh1IyHuykdLGTuAN5nsVCumPF480LYpezBoRRDxNqbAgjDMnrLLDCwCxL17bJEASuf5wJ4vNrPBIzN6ci/HQQdkEoDUDRphPaD0Tpz8uhRBWh/43dIIgnhBky6oD/nddloyGantd8oU8E4R329D9tBjRN0+12B0SXk+WakpRCloRTu7qwt4LM3ff1Ec/Cb0TYpw+w0Xt9vRUsISTKBIfI5gUtCHVPWKgLER+sKOIJPmoI9/AYsTyOqGiaooDHsDI5QbAuovNkxvK1YxPC0smovhiRUhKeGWCEWM/cb29vY58WT7eAhLnf//ADbo0EYWD/A8CBKRWhtt4Uh6B2SG9BYlL3yHv0shCYQvL4rw5hdpaaYseFGAUhKRAOAl7gDCci0v5YOIuCFA3v5q6Cwe/RhSsJIWmOge+NCJXaIiSqnL8YDSG70TQhjI8cMpUQFvE/iAPY6krjyiIRwTrJIhBiBlfIlcAdBkF4GcRRxeuPGOHnxrW+kATbQm3h1QMRcpmKCWFMP8t7qKgUL87PX/hy8/NtbjA/j/7bk7RGbX5+XuRhG51j8WSazcvrdweXl5crCGEA/d2f+1BEV+b3DHLIddP3xRyHHyO0l3Na5GBLaghDQ2iYreCJVP+Txz4S+Qd5PqrzQ1woXGR0DrbxZJrgwRXynYIBjBD9HQse1Fhy2fBaKNk3+D2EvK0oNxxi26Gz6zcjVC1Tj3EJyh22T8IL4vLOXUn5WS+lhMKPPS1K6UyIzaYpGhWhEshgqB3EqPaA9Bw3P0YQrhgQBq66dhMwRw8oyE+ys9a5+jZjF49C3O+DJGxhQrhC30PAMSxlF70ykaBbNaOuKKHYbZoNwZjPDlXL8LcSwk0jws22sTt/UChIVz6cEudNxIrwnDqpxv49xmNHcWa+CpLgmglhQO0JhsTmGuKTZyWaEDbeel7XNWxlMwTT2GXADuHDv2m8LM8VMiHMvrIgtLV03eKjphtIEujA2J0JYfhvKg9tH/VMRtdpPEtBqPb5lk+4fdNgiJuJ53mfSOZbjsnhUhlhOBz8PwJ85Emm8p0QRCkIpTmYQ5kzbsRD1GEj/nTmyEDF3ZiKMBhYObjZf7F1clsTIaVXH7UDkd2dun4tsIawQXEvKJ6K2YeyJZ4TT8Z/nJiemZ747MPd3JU0j50gvLr+sd9MVOLJSr4xc7/V4SjWxhChUTPBXoOKMKssc7Z/t4eAl0qs+GKtoKwcT1WaPy2Am6sgDn2/+/iTftF8NNsHtzJGy1DXSK1S0DdDHcIY4MwN3vv3LL0ad3QmxZwjsVhM6pxihZ8OL69WPrYUozgSr+TzWdQ3RxqZI3uDwwklvXeyWSXrXzOPBDN0ReClXpGPHY0lSqvTC8QHWphpVCR+/fSzHGyPNRdlB+mwWvFH+nuWAL5tY9Qu8JBSGL3ZbUTYODFNQuJzPWpGUg+VKryKJXDppxerrXK5uoiATuhXWGcxvNVGIZvNN9DhdCpGTQXgHDmE3FHb2nQZuF62QZg1hxTZ2fLaco0bwQdF/lkiUsrq8otGmoda/r8EAlzWMgFHSyDfBB2nFI3WkzwrnmTKZ5QBFyFjSP+hzzhgMU3Fc3+l/+qWH9Yo55mlhiWdYXRVWREYA+bt46L+icqxIXLoolYhV99YaEYr1hl5uHYNL9cjPM+ZNrdht/J408bD91Zh1WxDSvfBbuT9k5hxlXyp3FpdbZVLWaRW1aqtoCLEE+hStdUoEF7GJvz+V15Xs/EsPHp1jvOWL1BYaDBKTQibG/oaIT6FFHXMHy/XIGW4kvHRNQLivX8xGZsEeprUNv+NJqr6K+WYv4AMyZZjmEH9Cs8yJzst0g+VTii2tC4IZUEYB2bZgLdludbLUydOqX0NZYAnyP8sNCMz5WY2nopFIrFUMt/AbY+IT6yFUC2W8kl0KZbKIp1a8C8i/d6kDoCpzhv5B5lJRxvT8t7lqQx1TT+I2yKkBGuEJUUhRJtnsx3Bbd87QtwGksfYot9EyVUwg/9mwaoxM37EH0VC6i+4xmwR+3qgpaoo6joRvvOF8bMGhCVLPk+DiVfpv7j1eUg+zx9hzk+QZ2KVQgM3tyZue1nZCCAXEs1yCzVDfN6fxQ80bp3HmZAZuLWgU1EVrVHp7jP1FSaESWvUlN3Sq954GcjC6hhbZ7GaaWWRrTKta26L2ptipQnd+by/RdSG4/xBvDXymiFpCa2nQFL3wpQqyphjyLoSkfftGh9onj2vsS5OD/cefSVR9jfAQrVQwUohlsQmzKTEwzg6XCjnkzF/FLF4FYDIJOJM/r29C24ST6kgW7T7efHQWF4Twsa6peszGuqE060XPUZ9uzWkwCDZxgp7wR8lbT5SSeTzSBijBSk3TgGpHL0yiKQqOFveGZ2FxHapPZ8omDI/xoAlBiLpRnNHbESII25m+WMzlk1BYs1DZV9ceiCJW0I9wzRmXqK1IAvjQlnuLSqtaKTQmlk4XJhelczVMpK+/AZtGBq3Pnib6VtTk/f1sw21ahbGzSnbTNnMvrSOI/I1Wp7e7NqLI3sPHfYQt5qoX5pBNmermchmC2XU8uToSXwGd48zizOkMaI6P4zYtSpkm20dNijZ5bPjVF9PH86nIyxbxRSZp9RtT+LlVz11/22LYXOGgaCCNLUPJhfL0kEVVBWTNd6cBrEUujFBYSGPxHP2OE/NvXpsrBDlOdi1sMOEsEIJDPPMz7RvYGv65w2bPSy5WSRXkzZJUyMIXiTbWJ1ZLcWxTVoqqCzUI4RMd4kinoTs1BK7bMkraM4qKK+YNdQlvLVNfJ7cnaKa5XynjwRC4j3Sl6VGo5nVUsVF8jMTjWwMeZCL0wjjRMyftyhGvEzl3C51bgToMsDq+MiLwPKIJW+iaYUQQ3paSyI7iWKlasFmNIB9HfNnW3gz6+nJaqmQLzTL05OtLPp+Kr+4oLlOlcM8trrPrYqUO2k2Flp0HrY26NYV7FnTtJoRpoDJh+EFcePMmm8RUbaKChoFdFML26bRUHZ6uqBr+YnqxKHi7qs0PdNE5glr+ChB+B6JQGL1sEHZ3ylVVkM7BhKWrCrDkt3z3DBiiXTZ8zWaoomVVonER4w1oqptHvsXiaqX3aeaEf85ZSo9QYiaaWFxmpKzM1ZeuiXbvugDSrz4xirXFoR5XcPi2drsOY1/qUlF80dseOjjptRAWyJfKBQSekGPxLOJfCKblMtTWbbMImAUhP54aWGStsdDrHHfY4xWsn7Y0B6hX828hyzBVzb7KrcSqcbCDA4WRoG+XPqv3WJbKFk6B5/25xDtf/9vZQlktAl+uL7c39+/vAaHVWxqrtFmIHJbCRyfm5jJk36HRs3dLYNLxwLKJklWhHKXyHNHr233jSbr3uKN6YkG6l4o/T6xn3ZjzcnlW5HZD4YRBW9WDj7+1CyU+uAmMCZR+G9sbeswX1mmaSvhbT67ONkgtTJB13TIAlzYEtXZKnz9jHKLFWEcSHOZtlu2jSirCEOqsAie90RpIYE5JHwBeiK6UCcruAPh/c1w4GruZm7lTt02N/xbFtnUp1/octXI74Asf7QEVE1aKNsVxV84U9f4sqe07coo2a7PamQq85n9Bm6Lem2YbJ5nnt/WfQILjR0UJ+1pRObpK8OHiJlj1yrCsd9xWFgYqK8cvApDvB3fLes/Yu3mFEo1lmWEyGKjsZqCsDCF2z0UT/69TOdibNJ0IpostKbTWwgmZ3GsSO4dglBhnIYw+E6a+a4wj+c5lq/3Nv69WjB9uWyzn0x+bUO1wCkWmw1CpGvId0lEi9bj5qkmTqxS6h8ubd3WfDjxNa8kcCG5dwLqehIjwjtV1/MQCgJzdDIF+k2KukhNUL4YKe1uiSyv2MUCfdtAGsKGEszghfrszwWLgMxIwkATiUi22To+nEI4RbzVKEJKpgvZIbwUeQSNZSFTPzoZP1wr5+1UyqIFdrIFevqROVMw3xFhTEvVinr897+YvJeYXJ+H0016eaKpbLN8Prm9vHFyeyRebIaJLr0jKlU+IJp0LHhTF2u3JxvL9xP9Uj5Fb2vREtYfJJKjo8T51JFx32x2g249U/dG6OO8jbLS4Fkf8kD1NdiU3hTB4dDppv3OYHhoqVSunv/86bOPH67vPu3v39zgnvHj3A3qC++uP3z8tHDcL5fyFRtsmPIgCUiNLuhBN8826uYgNbR4hg4I43igTVNvkO1sTGpRhAXlKI5nJCYmyu57g0VT8WSykkWGDKIEcogrlWQ85rItfB5LZh7kC0SRNlRdk+y/vvVZRqpYmj1ji5CECPS9Gx4G+UXqfP1J1cCIg8VIs4IDFC2qaf4AwmICwCIShHIzSewLRdfk18ZrNCMD0uwZTHSEFaCvI6LrOHgr+aNlNaRXwBuCZsHiKgIZA9WC930lnanVLGBs6K2ozzhMJqTqm0linxtpT9qAnw/maPaMPULkCEM9PllYa8vH+YjWIMo4i30D6ehovpkkwabh9yNWKRWP+mPTZT9WdJ/VyPMAAAqsSURBVNFGK+JPghmwiipbuSFbjbWWThibiLSwZLfJnA3CwgvablY4LpQpqzfNYBtiUYpjFkC5OQ1wi4ktYt0X8bwXKtEPKfTsQipKwv4p0GqCCmqBiRmD5E1OHfEWfHJnyHe+tHu/3W5Iu5SNDDFGYVn7KMC2jRS2RvysYMhxzFQMvIV/lxuVfLaStOq4WDJWSRRKZaRLJkn+xmks6xN+QMK5AGTRhRKIx4HeqWjeUtYQysRO2W6iZ4cwbzMtmtfGMZI4EJgCi5XWIUDgGpXYIcaGAGdxPC3uXwXTMSAFDBNgYXJiohxfmFyYLEcR/oIURE2gG2Zwm6siaWj5J8honhTRWQWrk0C/m0PUEjDRZvF2QnYAbRH6z3JGQ1o6gEdat1rAtZ/H2iYa9y/IvERnV/GpGRApAxCJgMnWDACVhHSZtFbUusogv9qYBMgFzhJ9EgWH5XwMo9JsCDzkMQn01lqL5kaScgmzxjFDTwgTr2nxOnZKE7kUNszLgPi1MTCJQODPTIAUBjpx2ACHKXR+EadhLiVAMxpLxSqInXF0B1ZPqAX7sUyXsCg0pPpp6Bre5GE2gt6mk76kHM1hLMNCYsi+b7VFKDlRxqpieNGsk/Fg7kQpmURi1sLFziIOYVnDxkBJ6jKjDVDII4TRqB8jRGwvNHHq+yo2QqYBuh1ppUIVsbpQ0IxnUjfIE9X3tJMirSEylmFfjwgTlDghGd01EnaCQSmL4FRwi5oBoZkFJHcAHGK1IYkl8EvNLkGabgU0iICXsV4CE7EyejZWwedbWaAWNUnZnbJJH0PlReCgue0R+o+7RsOGwemzaB5jtBDPY6YsgFgcHGJztYAQxqvoXAVMTyN9gxBOTk8cZjGrUdnLeYywgdRtXJozhDRqCnc4KW0fY5rYRX+hBmfZWaetyB0QUiL8cLBjE6ONRDFTCug/fwQVNYL4mUVqIou0zgJSiAVpRwaCMItZXsBbRWexjp0pT4NsCRwizVKJAeqWTQrAyhlN1/B14PCQE0L/+bq8BaPOCIdHG7u2pnYlUcVmeQQsprA5sgBSSMkgdDN+uYERhA2QJdKIzxFJzYJpPEiFKiEatxW3eKEPNmo0FgrjDq3QGWGKtqUHdv23fmzlnfZTblQrk2W8s1Irj6FMgjhCWa1WSymwUJ1GhkIFNzIsqpOkBTWQlx2z833xEGup/+PGbZ2+Pp+v0T1fLwiRs08d4eFZvnPy+rzkFtCOFJqVahZDaUmaZiaF/52II14i4MlG0p+wxyW/I9s4/3H2VuR1ASCjNqVF8j0jjL6xWyzOc6x4u3zYN0eM7MoZScXj8SSCFo+7YdK+XilUzzJbRyIJb9nNBIU5x11IXRD6m68d8pxBFtZPln/pN5OerWyvFKs0W5OvN3odH2vwBSlGKUPZpstAzgjtDHDlezxkfZ3e7M5aq5B08dg9UqRSKJ9Pvtjo1RiopLixrWMf3t/JbRN5F4RJ971ZcASXqd9uTf2y1mpm7ZWhM6WSJHr1Yvn9bUfkcRDdGkWnAOTthjY9I/SXZ90WmkihXIgaC1O73Xr+4se1VqmQTcbcwjB+PNydwk5U63zyfnwWRyB5Fm986LRmwETs+MP25fYTZWO7xtF8judJvhaxc9Tbmp3aWTheO++3GqVmQYo+IUokEvl8oVlqtPr98+PJX16Pb7zvHdVEhiexVTtxYex+wZqt4+sZIdU8NXzFMteV56UEUCzPiJ3a0e1t7+Tk5P0Wpvfv0eHt7e1RrSOKPimdFAJmgOaFfaoitW6VNzxCYtk4Vyr5Fm3QGZcdZ8KCSPgUYvFv3oBKPyxD7rT7mG5+Lznk1i0TIEdBGNN25aVLCxks7LZzZGNHTUN4mO+uAZP/CJ2L9Ha67azdtLBR3SYIPCRCP226BWMqKMnsmEGdZ7cjKsF2c7OiQOZ5aeBRJJXIM3JW5ZBNQiDzMDNtU85REPr7by3z9Cz8JAXj8PL7UEZef61tOwahcfaD2ovXcwMGZz8JEUxQywtuN1tYT+5doWeEEaDXp1ZWoDMky06IYUkZiZXAzodCUsZJvj7o6Sd41NPp1xLP5LQEOF9BjfdxOKXG9qB7T9LRM/Rvad9EXaEHGfWGUN1LyO6DjLyDupT8iGQ+kjJ+SFgvAFjSVhyRlMEkzQBD9lO/4HC2KFQFeGfntABZZm8gap+zBQkzdjHgERD6q5Z1DcYPywkgO1JeTsw5KTErAYKTDL3WQugEFt4zgCGZXXCCzG2cdInUSQ4yucFFOlN0TfHAvrXZpXo0hP7dLketTNk5ljMlDUi6Gbx1vJw6HqfJJ+lNdlSEMrtJQn1JqEM4K/Q8S/JJ5Vg5oY/bIhZYc4rNjIAwrnYZVKCspASlfDo4fTVGFQpJYsoaEGIhDcnqUs5mnm5jbhMetlkpn42dNlXribbz74MQoi7DaccQdkfNQYoFTs40kyZ6xAfb+s3WcTqXeYwFCQWpB6lmEOPhPc41xKT3sEC4ZFQVxp2CTyMhJFtc0omRZJK0wfsM4RtJ4l27kMQU51FeUoK4pD/BYon3BcDN915quztysp4LRhD3gLwDOfVjpEa9dRTDIfSfUaw3RWZIEyLNC+CcLdoGDkRHDtStOmTBXMpIrCaZX7h7pcVKOoiIuryhgI3B770RDoUwBmx3lce8COEkTyHCIf021qhRGhD6VOwZRqoZpi7n6PPBjnIxY0o/a3EKhxhz9o4QecPUncSItIVC25hvJFEy58Op5DLpHVJyKdt3RiTE81IaZJIcbABJAsI6S+oDMw2S/dVD920G6l9v+hc1ZVencDSE1G3J5SEpiJwh1I3VL7DOICzsCpCrkU6f/AxhUNsC7iZDnbrI3JOkbFgh5XhBbXg8y3SQYUuXFQWfYR/Vx0XoL9nHNJCZjcxNKOYGOYg7ctI94CyBRV0+6B2BIcm9fDyx0NCdGdThozvbg5z8ZuxWOXglyKbNLZt33n5EhP4ysExjMQPFRjbyFYjdxbaRL8TDHOJfJrOzs1MUUJvLkLnyzEV7gJpevU4EEnuMNj2RwXn01U7BcXO4mNdwCP2l0HPqwmBT6ZRZbZAjN+OUv8QTxofS1GWe46TUzzZyb6k6ZK/WNsBZyXO4dUSE/mjzjXE6mdegkTIV29vdRnR4n7OjWbBbGmU+y7AIEWX74LRmt6B0mCiL7aH+N0ZXW8980beZRPcUCPHKrjPwtsN5WGw5PFAD4bD6+hQ4a1RGjzePhBBRsgzAel1gbSOADyQsmVy9NwtCLdsZmU+L0I9X2e0ScR0qF5JdjMowiw6yHJLMcbBrmSv86yL04wGyXTDeEzmWNpfOATRj47/zSPmyvvrt6RLYfSjvHgehHy9jKp+B5ydHoiBYUVrTI9lgJlFkAYpH61uvwHGrmfUUgvFED0aIKZJoHL8Bz9drojSVfYi2qcyCFmu9jQzYXSs/2gxHhR4FIaZIstA6A+DFRu+ozuCM8dASr9f4RSLhJEs9HuQ4HUe2HGacw1zh0enREEoUTzRb57vIl3h+ut47qtVFkcGGjaAQsmQYZNN1ake99dNZnMPz7LxVylceTygt9MgIJYqmKvlmuX9+9vPuIbDSm5/Pjs+rZTIG9xSfN9KTINQoGkkhiquEf8UefVDckZ4Y4X8C+i+E/+/T/wUvddPc3r0ALgAAAABJRU5ErkJggg==" alt="SMP Ma'arif 02" class="edu-img">
+            <div class="edu-info">
+                <span class="year">2021 - 2024</span>
+                <h3>SMP Ma'arif 02 Malang</h3>
+                <p>Menyelesaikan pendidikan menengah pertama dengan minat aktif pada ekstrakurikuler teknologi.</p>
+            </div>
+        </div>
+        <div class="edu-card">
+            <img src="https://yt3.googleusercontent.com/ytc/AIdro_kn-krgnj8wIaLL5YXgyiiKbHC1uw8LZ-KQYUD0aHI8i3w=s900-c-k-c0x00ffffff-no-rj" alt="SMKN 11 Malang" class="edu-img">
+            <div class="edu-info">
+                <span class="year">2024 - 2027</span>
+                <h3>SMKN 11 Malang</h3>
+                <p>Jurusan Rekayasa Perangkat Lunak (RPL). Fokus pada pengembangan aplikasi web dan pemrograman tingkat lanjut.</p>
+            </div>
+        </div>
+
+        
+
+        
+
+    </div>
+</section>
+
+<section id="projects" class="reveal">
+    <h2 class="section-title">Projek Yang Telah Dibuat</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="gui.jpeg" style="width:100%; border-radius:15px;" alt="Projek 1">
+        <h3 style="margin-top:15px;">Aplikasi Kasir </h3>
+        <p style="font-size: 0.9rem; margin: 10px 0; opacity: 0.7;">Aplikasi kasir yang menggunakan gui.</p>
+        <a href="#" class="btn" style="width:100%; text-align:center; padding: 10px;">Preview</a>
+      </div>
+      <div class="card">
+        <img src="cakephpcomik.jpeg" style="width:100%; border-radius:15px;" alt="Projek 2">
+        <h3 style="margin-top:15px;">Aplikasi Komik Web</h3>
+        <p style="font-size: 0.9rem; margin: 10px 0; opacity: 0.7;">Aplikasi komik yang hanya bisa diakses admin berbasis web menggunakan cake php.</p>
+        <a href="#" class="btn" style="width:100%; text-align:center; padding: 10px;">Preview</a>
+      </div>
+       <div class="card">
+        <img src="review.jpeg" style="width:100%; border-radius:15px;" alt="Projek 2">
+        <h3 style="margin-top:15px;">Aplikasi Web Review Komik</h3>
+        <p style="font-size: 0.9rem; margin: 10px 0; opacity: 0.7;">Web Review Komik menggunakan laravel.</p>
+        <a href="#" class="btn" style="width:100%; text-align:center; padding: 10px;">Preview</a>
+      </div>
+    </div>
+</section>
+
+<section id="contact" class="reveal" style="text-align: center;">
+    <h2 class="section-title" style="display: inline-block;">Mari Kontak</h2>
+    <p style="margin: 20px 0;">Ingin bekerja sama atau sekadar menyapa?</p>
+    <a href="mailto:xvanpratama@gmail.com" class="btn"><i class="fas fa-envelope"></i> xvanpratama@gmail.com</a>
+    <a href="https://wa.me/6282151061969" class="btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://instagram.com/h0wpann" class="btn" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</section>
+<footer>
+    <p>© 2026 Mochammad Evan Pratama • Malang, Indonesia</p>
+</footer>
+
+<script>
+function toggleMode(){ document.body.classList.toggle('light'); }
+
+function toggleMenu(){
+    const menu = document.querySelector('nav ul');
+    const icon = document.querySelector('.menu-btn i');
+    menu.classList.toggle('active');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+}
+
+// Typing Effect
+const textElement = document.getElementById("typing");
+const words = ["Web Developer.", "Siswa SMKN 11 Malang.", ];
+let wordIndex = 0, charIndex = 0, isDeleting = false;
+
+function type() {
+  const currentWord = words[wordIndex];
+  textElement.textContent = isDeleting ? currentWord.substring(0, charIndex - 1) : currentWord.substring(0, charIndex + 1);
+  charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
+  
+  if (!isDeleting && charIndex === currentWord.length) {
+    isDeleting = true; setTimeout(type, 2000);
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false; wordIndex = (wordIndex + 1) % words.length; setTimeout(type, 500);
+  } else {
+    setTimeout(type, isDeleting ? 70 : 150);
+  }
+}
+// Fungsi untuk mendeteksi scroll dan memunculkan elemen
+const observerEducation = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Menambahkan class 'active' agar CSS 'reveal' berjalan
+            entry.target.classList.add('active');
+        }
+    });
+}, { 
+    threshold: 0.15 // Akan muncul jika 15% bagian sudah terlihat di layar
+});
+
+// Menargetkan section education
+const educationSection = document.querySelector('#education');
+if (educationSection) {
+    observerEducation.observe(educationSection);
+}
+document.addEventListener("DOMContentLoaded", type);
+
+// Reveal on Scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('active');
+    });
+}, { threshold: 0.1 });
+reveals.forEach(reveal => observer.observe(reveal));
+</script>
+</body>
+</html>
